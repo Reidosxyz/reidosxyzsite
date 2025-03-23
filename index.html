@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REIDOS - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .neon-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .neon-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .neon-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+        }
+
+        .neon-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .social-icon i {
+            color: #ffffff;
+            font-size: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+        }
+
+        .exclusive-card {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(78, 205, 196, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0); }
+        }
+
+        .card.music-card {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.15), rgba(78, 205, 196, 0.15));
+        }
+
+        .card.music-card::before {
+            background: linear-gradient(45deg, #ff6b6b, #8338ec);
+        }
+
+        .music-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card music-card">
+            <h2>Music NFTs</h2>
+            <i class="fas fa-music music-icon"></i>
+            <p>Discover and collect unique music tracks on Cardano blockchain.</p>
+            <a href="music.html" class="neon-link">Explore Music</a>
+        </div>
+
+        <div class="card">
+            <h2>Games</h2>
+            <p>Check out our collection of classic arcade games with modern twists!</p>
+            <a href="games.html" class="neon-link">Play Now</a>
+        </div>
+
+        <div class="card">
+            <h2>Blog</h2>
+            <p>Stay updated with the latest in Cardano and blockchain technology.</p>
+            <a href="blog.html" class="neon-link">Read More</a>
+        </div>
+
+        <div class="card">
+            <h2>Digital Art Gallery</h2>
+            <p>Browse and collect unique digital artworks minted on Cardano.</p>
+            <a href="gallery.html" class="neon-link">View Gallery</a>
+        </div>
+
+        <div class="card">
+            <h2>AI Music Showcase</h2>
+            <p>Experience the fusion of AI and music in my latest compositions.</p>
+            <a href="ai-music.html" class="neon-link">Listen Now</a>
+        </div>
+
+        <div class="card">
+            <h2>NFT Store</h2>
+            <p>Purchase and collect unique digital assets on Cardano.</p>
+            <a href="store.html" class="neon-link">Shop NFTs</a>
+        </div>
+
+        <div class="card">
+            <h2>Cardano Feed</h2>
+            <p>Stay updated with the latest Cardano ecosystem news and trends.</p>
+            <a href="cardano-feed.html" class="neon-link">View Updates</a>
+        </div>
+
+        <div class="card">
+            <h2>Music Videos</h2>
+            <p>Watch music videos and visual accompaniments to my tracks.</p>
+            <a href="videos.html" class="neon-link">Watch Now</a>
+        </div>
+
+        <div class="card">
+            <h2>Resources</h2>
+            <p>Learn about Cardano, NFTs, and blockchain technology.</p>
+            <a href="resources.html" class="neon-link">Learn More</a>
+        </div>
+
+        <div class="card">
+            <h2>Community</h2>
+            <p>Join our Discord and participate in exclusive events.</p>
+            <a href="#" class="neon-link">Join Now</a>
+        </div>
+
+        <div class="card">
+            <h2>Collaborations</h2>
+            <p>Explore projects with other artists and creators.</p>
+            <a href="collabs.html" class="neon-link">View Projects</a>
+        </div>
+
+        <div class="card">
+            <h2>Tutorials</h2>
+            <p>Learn about music production, AI, and digital art creation.</p>
+            <a href="tutorials.html" class="neon-link">Start Learning</a>
+        </div>
+
+        <div class="card">
+            <h2>Exclusive Access</h2>
+            <p>Special content for our NFT holders. Verify your ownership to unlock exclusive features!</p>
+            <a href="exclusive.html" class="neon-link">Enter</a>
+        </div>
+
+        <div class="card">
+            <h2>Mint Station</h2>
+            <p>Mint your favorite content as NFTs to support the creator.</p>
+            <a href="mint.html" class="neon-link">Start Minting</a>
+        </div>
+
+        <div class="card">
+            <h2>Events</h2>
+            <p>Virtual concerts, art shows, and community gatherings.</p>
+            <a href="events.html" class="neon-link">See Calendar</a>
+        </div>
+
+        <div class="card">
+            <h2>Merchandise</h2>
+            <p>Physical merchandise and collectibles.</p>
+            <a href="merch.html" class="neon-link">Shop Now</a>
+        </div>
+
+        <div class="card">
+            <h2>Roadmap</h2>
+            <p>Future plans and upcoming releases.</p>
+            <a href="roadmap.html" class="neon-link">View Roadmap</a>
+        </div>
+
+        <div class="card">
+            <h2>About</h2>
+            <p>Learn more about the creator and the project vision.</p>
+            <a href="about.html" class="neon-link">Read More</a>
+        </div>
+
+        <div class="card">
+            <h2>Support</h2>
+            <p>Ways to support the project and get involved.</p>
+            <a href="support.html" class="neon-link">Learn More</a>
+        </div>
+
+        <div class="card">
+            <h2>Connect</h2>
+            <p>Follow us on social media for updates and announcements!</p>
+            <div class="social-links">
+                <a href="https://x.com/reidos_ada" class="social-icon" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://youtube.com/@reidos6420" class="social-icon" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

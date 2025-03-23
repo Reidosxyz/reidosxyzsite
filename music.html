@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>REIDOS Music NFTs</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      text-align: center;
+      padding: 2rem;
+      background: #000;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .nft-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      padding: 2rem;
+      justify-items: center;
+    }
+    .nft-card {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 1rem;
+      width: 100%;
+      max-width: 300px;
+      box-shadow: 0 0 10px rgba(0,255,204,0.3);
+    }
+    .nft-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .nft-card h2 {
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+    }
+    .genre-tag {
+      background: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-right: 5px;
+      display: inline-block;
+      font-size: 0.8rem;
+    }
+    .mint-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 10px 18px;
+      background: linear-gradient(90deg, #00ffcc, #007777);
+      color: black;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+    }
+    .popularity-bar {
+      background: #333;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .popularity-bar div {
+      height: 8px;
+      background: linear-gradient(90deg, #00ffcc, #007777);
+    }
+    audio {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  </style>
+  <script>
+    function openMintWindow(url) {
+      const width = 600;
+      const height = 700;
+      const left = (screen.width / 2) - (width / 2);
+      const top = (screen.height / 2) - (height / 2);
+      window.open(url, 'MintWindow', `width=${width},height=${height},top=${top},left=${left}`);
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const audios = document.querySelectorAll('audio');
+      audios.forEach(audio => {
+        audio.addEventListener('play', () => {
+          audios.forEach(other => {
+            if (other !== audio) {
+              other.pause();
+              other.currentTime = 0;
+            }
+          });
+        });
+        audio.addEventListener('timeupdate', () => {
+          if (audio.currentTime > 30) {
+            audio.pause();
+            audio.currentTime = 0;
+          }
+        });
+      });
+    });
+  
+    function filterByGenre() {
+      const selected = document.getElementById('genreFilter').value.toLowerCase();
+      document.querySelectorAll('.nft-card').forEach(card => {
+        const genreData = card.getAttribute('data-genre')?.toLowerCase() || '';
+        if (selected === 'all' || genreData.includes(selected)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }  
+  </script>
+</head>
+<body>
+  <header>
+    <h1>🎿 REIDOS Music NFTs</h1>
+    <p>Mint unique tracks on Cardano via NMKR</p>
+  </header>
+
+  <div style="text-align: center; margin-top: 1rem;">
+    <label for="genreFilter" style="font-weight: bold; color: #00ffcc; margin-right: 10px;">🎧 Filter by Genre:</label>
+    <select id="genreFilter" onchange="filterByGenre()" style="padding: 8px 14px; border-radius: 8px; border: none; background: #222; color: #00ffcc; font-weight: bold; font-size: 1rem;">
+      <option value="all">All</option>
+      <option value="Rap">Rap</option>
+      <option value="Complex Rap">Complex Rap</option>
+      <option value="Hip-Hop">Hip-Hop</option>
+      <option value="Country Metal">Country Metal</option>
+      <option value="Electro">Electro</option>
+      <option value="Dance">Dance</option>
+      <option value="Story">Story</option>
+      <option value="Bank Robbery">Bank Robbery</option>
+      <option value="Love Song">Love Song</option>
+      <option value="Pop">Pop</option>
+      <option value="Hardcore">Hardcore</option>
+      <option value="Metalcore">Metalcore</option>
+      <option value="Ska">Ska</option>
+      <option value="Trap">Trap</option>
+      <option value="Dark">Dark</option>
+      <option value="Atmospheric">Atmospheric</option>
+    </select>
+  </div>
+
+  <main class="nft-list">
+    <!-- Card 1 -->
+    <div class="nft-card" data-genre="Rap, Complex Rap">
+      <img src="images/Quantum Rap God.jpg" alt="Quantum Rap God Cover">
+      <h2>Quantum Rap God</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Complex Rap</span>
+      <p>Bars so dense they warp time. Witness quantum lyricism pushed to its limits.</p>
+      <audio controls>
+        <source src="audio/Quantum Rap God.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=d8de1ff6be1b4eaa9f55c3a15c306847" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="nft-card" data-genre="Rap, Complex Rap">
+      <img src="images/Polysyllabic Paradox.jpg" alt="Polysyllabic Paradox Cover">
+      <h2>Polysyllabic Paradox</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Complex Rap</span>
+      <p>Rhymes within rhymes — a lyrical puzzle layered in paradox. Pure flow mastery.</p>
+      <audio controls>
+        <source src="audio/Polysyllabic Paradox.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=06230a31831d4c3db73d4bd572dd6054" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="nft-card" data-genre="Rap, Complex Rap">
+      <img src="images/Chrono-Phonetic Singularity.jpg" alt="Chrono-Phonetic Singularity Cover">
+      <h2>Chrono-Phonetic Singularity</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Complex Rap</span>
+      <p>Where time bends to the syllable — a paradoxical rap trip across dimensions.</p>
+      <audio controls>
+        <source src="audio/Chrono-Phonetic Singularity.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=aa2142667d2c45338fea760f619a7fbf" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="nft-card" data-genre="Rap, Complex Rap">
+      <img src="images/Verbal Velocity.jpg" alt="Verbal Velocity Cover">
+      <h2>Verbal Velocity</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Complex Rap</span>
+      <p>Blazing-speed delivery meets razor-sharp diction. Feel the speed of rap acceleration.</p>
+      <audio controls>
+        <source src="audio/Verbal Velocity.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=177cdc49d15a46e3bca57a0121262aaa" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="nft-card" data-genre="Rap, Complex Rap">
+      <img src="images/Verbal Velocity 2.jpg" alt="Verbal Velocity 2 Cover">
+      <h2>Verbal Velocity 2</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Complex Rap</span>
+      <p>The sequel doubles down — denser, faster, meaner. Precision at breakneck pace.</p>
+      <audio controls>
+        <source src="audio/Verbal Velocity 2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=b50ceb3a073c4071ae08b22eac553ca3" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="nft-card" data-genre="Country Metal">
+      <img src="images/Whiskey Ride Into The Storm.jpg" alt="Whiskey Ride Into The Storm Cover">
+      <h2>Whiskey Ride Into The Storm</h2>
+      <span class="genre-tag">Country Metal</span>
+      <p>Grit, groove, and rebellion — this one's a stormy ride through sound. Limited edition NFT.</p>
+      <audio controls>
+        <source src="audio/Whiskey Ride Into The Storm.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=1f8c7f19f4324cdbafc1ef496252482e" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 7 -->
+<div class="nft-card" data-genre="Electro, Party">
+    <img src="images/Aliens Just Want To Party.jpg" alt="Aliens Just Want To Party Cover">
+    <h2>Aliens Just Want To Party</h2>
+    <span class="genre-tag">Electro</span>
+    <span class="genre-tag">Party</span>
+    <p>Funky extraterrestrial rhythms that prove aliens didn’t come to conquer — they came to party.</p>
+    <audio controls>
+      <source src="audio/Aliens Just Want To Party.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <div class="popularity-bar"><div style="width: 70%"></div></div>
+    <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card7" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+  </div>
+  
+
+    <!-- Card 8 -->
+    <div class="nft-card" data-genre="Country Metal">
+      <img src="images/Steel and Thunder.jpg" alt="Steel and Thunder Cover">
+      <h2>Steel and Thunder</h2>
+      <span class="genre-tag">Country Metal</span>
+      <p>Heavy riffs and raw energy collide in this sonic storm. Own the thunder — limited edition NFT.</p>
+      <audio controls>
+        <source src="audio/Steel and Thunder.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card8" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="nft-card" data-genre="Story, Bank Robbery">
+      <img src="images/The Heist.jpg" alt="The Heist Cover">
+      <h2>The Heist</h2>
+      <span class="genre-tag">Story</span>
+      <span class="genre-tag">Bank Robbery</span>
+      <p>Slick beats, suspenseful vibes — the perfect soundtrack to a digital getaway. Limited NFT.</p>
+      <audio controls>
+        <source src="audio/The Heist.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card9" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="nft-card" data-genre="Love Song, Pop">
+      <img src="images/Runaway Love.jpg" alt="Runaway Love Cover">
+      <h2>Runaway Love</h2>
+      <span class="genre-tag">Love Song</span>
+      <span class="genre-tag">Pop</span>
+      <p>Heartfelt vocals and smooth grooves tell the story of love on the run. A soulful collectible.</p>
+      <audio controls>
+        <source src="audio/Runaway Love.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card10" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="nft-card" data-genre="Hardcore, Metalcore">
+      <img src="images/Break The Chains.jpg" alt="Break The Chains Cover">
+      <h2>Break The Chains</h2>
+      <span class="genre-tag">Hardcore</span>
+      <span class="genre-tag">Metalcore</span>
+      <p>Anthemic and defiant — this track roars with freedom and fire. Break free with this NFT.</p>
+      <audio controls>
+        <source src="audio/Break The Chains.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card11" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 12 -->
+    <div class="nft-card" data-genre="Ska">
+      <img src="images/Skankin' To The Skies.jpg" alt="Skankin' To The Skies Cover">
+      <h2>Skankin' To The Skies</h2>
+      <span class="genre-tag">Ska</span>
+      <p>Uplifting ska energy to take you higher. Bounce to the beat — now on chain.</p>
+      <audio controls>
+        <source src="audio/Skankin' To The Skies.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card12" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 13 -->
+    <div class="nft-card" data-genre="Trap">
+      <img src="images/VVS Vision.jpg" alt="VVS Vision Cover">
+      <h2>VVS Vision</h2>
+      <span class="genre-tag">Trap</span>
+      <p>Crystal-clear vibes with polished production. A shining gem in your NFT collection.</p>
+      <audio controls>
+        <source src="audio/VVS Vision.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card13" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 14 -->
+    <div class="nft-card" data-genre="Rap, Hip-Hop">
+      <img src="images/Rhyme Fusion.jpg" alt="Rhyme Fusion Cover">
+      <h2>Rhyme Fusion</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Hip-Hop</span>
+      <p>Lyricism and rhythm collide — this is pure energy in audio form. Own it on Cardano.</p>
+      <audio controls>
+        <source src="audio/Rhyme Fusion.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card14" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 15 -->
+    <div class="nft-card" data-genre="Dark, Atmospheric, Story">
+      <img src="images/The House That Remembers.jpg" alt="The House That Remembers Cover">
+      <h2>The House That Remembers</h2>
+      <span class="genre-tag">Dark</span>
+      <span class="genre-tag">Atmospheric</span>
+      <span class="genre-tag">Story</span>
+      <p>A chilling audio journey through memory and time. The walls echo with sound.</p>
+      <audio controls>
+        <source src="audio/The House That Remembers.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card15" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 16 -->
+    <div class="nft-card" data-genre="Story">
+      <img src="images/The Auction of Souls.jpg" alt="The Auction of Souls Cover">
+      <h2>The Auction of Souls</h2>
+      <span class="genre-tag">Story</span>
+      <p>A dramatic sonic scene where spirit meets bid — surreal, haunting, collectible.</p>
+      <audio controls>
+        <source src="audio/The Auction of Souls.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card16" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 17 -->
+    <div class="nft-card" data-genre="Love Song, Pop">
+      <img src="images/Rewind The Fall.jpg" alt="Rewind The Fall Cover">
+      <h2>Rewind The Fall</h2>
+      <span class="genre-tag">Love Song</span>
+      <span class="genre-tag">Pop</span>
+      <p>A nostalgic love track about second chances and digital echoes.</p>
+      <audio controls>
+        <source src="audio/Rewind The Fall.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card17" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 18 -->
+    <div class="nft-card" data-genre="Love Song, Pop">
+      <img src="images/Sunset Wish.jpg" alt="Sunset Wish Cover">
+      <h2>Sunset Wish</h2>
+      <span class="genre-tag">Love Song</span>
+      <span class="genre-tag">Pop</span>
+      <p>Warm, glowing vibes that set with the sun. A nostalgic ride through golden soundscapes.</p>
+      <audio controls>
+        <source src="audio/Sunset Wish.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card18" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 19 -->
+    <div class="nft-card" data-genre="Rap, Hip-Hop">
+      <img src="images/Dream Sequence.jpg" alt="Dream Sequence Cover">
+      <h2>Dream Sequence</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Hip-Hop</span>
+      <p>A surreal soundscape of layered thoughts. Step into the dream with this sonic NFT.</p>
+      <audio controls>
+        <source src="audio/Dream Sequence.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card19" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+    <!-- Card 20 -->
+    <div class="nft-card" data-genre="Rap, Complex Rap">
+      <img src="images/Ethereal Algorithmic Overdrive.jpg" alt="Ethereal Algorithmic Overdrive Cover">
+      <h2>Ethereal Algorithmic Overdrive</h2>
+      <span class="genre-tag">Rap</span>
+      <span class="genre-tag">Complex Rap</span>
+      <p>Digital chaos meets ambient bliss. A hyperintelligent groove etched on the blockchain.</p>
+      <audio controls>
+        <source src="audio/Ethereal Algorithmic Overdrive.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="popularity-bar"><div style="width: 70%"></div></div>
+      <a href="https://pay.nmkr.io/?p=17d5b3cee016438ab0fd95eed2e44764&n=card20" onclick="openMintWindow(this.href); return false;" class="mint-btn">🎵 Mint NFT</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Built with ❤️ on Cardano | © 2025 REIDOS</p>
+    <p>
+      <a href="https://www.youtube.com/@reidos6420" target="_blank" style="color:#00ffcc;text-decoration:none;font-weight:bold;">📺 Watch on YouTube</a> |
+      <a href="https://x.com/reidos_ada" target="_blank" style="color:#00ffcc;text-decoration:none;font-weight:bold;">🐦 Follow on X</a>
+    </p>
+  </footer>
+</body>
+</html>

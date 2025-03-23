@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REIDOS - Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            z-index: -1;
+            background: linear-gradient(45deg, #ff6b6b22, #4ecdc422);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.3);
+        }
+
+        .blog-card:hover::before {
+            transform: scale(1);
+        }
+
+        .blog-card h2 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .blog-card .date {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blockchain Insights</h1>
+
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="date">March 23, 2024</div>
+                <h2>Cardano's Chang Hard Fork: A Game-Changer for DeFi</h2>
+                <p>The upcoming Chang hard fork represents a significant milestone for Cardano, introducing new features that will revolutionize DeFi capabilities. With improved smart contract functionality and enhanced scalability, this update positions Cardano as a leading platform for decentralized finance.</p>
+                <div class="tags">
+                    <span class="tag">Cardano</span>
+                    <span class="tag">DeFi</span>
+                    <span class="tag">Development</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="date">March 22, 2024</div>
+                <h2>Global Crypto Adoption: Countries Leading the Way</h2>
+                <p>From El Salvador's Bitcoin adoption to Japan's progressive regulatory framework, we're seeing unprecedented government acceptance of cryptocurrencies. This analysis explores how different nations are integrating blockchain technology into their financial systems.</p>
+                <div class="tags">
+                    <span class="tag">Adoption</span>
+                    <span class="tag">Government</span>
+                    <span class="tag">Regulation</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="date">March 21, 2024</div>
+                <h2>Cardano's Role in African Development</h2>
+                <p>IOHK's partnerships in Ethiopia and other African nations showcase how blockchain technology can transform education and infrastructure. Learn about the real-world impact of Cardano's initiatives in providing digital identity and financial services.</p>
+                <div class="tags">
+                    <span class="tag">Cardano</span>
+                    <span class="tag">Africa</span>
+                    <span class="tag">Development</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="date">March 20, 2024</div>
+                <h2>The Rise of Layer 2 Solutions</h2>
+                <p>As blockchain networks evolve, Layer 2 solutions are becoming increasingly important for scalability. Discover how Hydra on Cardano and other scaling solutions are shaping the future of blockchain technology.</p>
+                <div class="tags">
+                    <span class="tag">Technology</span>
+                    <span class="tag">Scaling</span>
+                    <span class="tag">Innovation</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="date">March 19, 2024</div>
+                <h2>NFTs Beyond Digital Art</h2>
+                <p>While NFTs gained popularity through digital art, their potential extends far beyond. Explore how NFTs are being used for identity verification, property rights, and access control in various industries.</p>
+                <div class="tags">
+                    <span class="tag">NFTs</span>
+                    <span class="tag">Innovation</span>
+                    <span class="tag">Use Cases</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="date">March 18, 2024</div>
+                <h2>Sustainable Blockchain: Cardano's Approach</h2>
+                <p>As environmental concerns around blockchain technology grow, Cardano's Proof-of-Stake mechanism stands out as a sustainable alternative. Learn about the environmental impact and energy efficiency of different consensus mechanisms.</p>
+                <div class="tags">
+                    <span class="tag">Cardano</span>
+                    <span class="tag">Sustainability</span>
+                    <span class="tag">Technology</span>
+                </div>
+            </article>
+        </div>
+
+        <div class="back-to-home">
+            <a href="index.html" class="btn">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html> 
